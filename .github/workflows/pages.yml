@@ -23,7 +23,7 @@ jobs:
           node-version: '22'
       - run: npm test
       - run: npm run check
-      - run: mkdir public && cp index.html app.js learning.js content.js styles.css public/
+      - run: mkdir public && cp index.html app.js learning.js content.js studio.js speaking.js styles.css public/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -31,3 +31,4 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+

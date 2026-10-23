@@ -1,5 +1,15 @@
 # Từng bước · English Steps
 
+## Mới: phòng luyện nói miễn phí (v1.1)
+
+Mở **Phòng luyện nói mới** tại https://thaidhuy201-hash.github.io/english-steps/#studio . Có 6 bài phát âm với hướng dẫn miệng bằng tiếng Việt, cặp từ để nghe phân biệt, câu ứng dụng; 3 hội thoại theo kịch bản (gặp gỡ, công việc, phỏng vấn), nhân vật CSS chuyển động theo trạng thái giọng đọc và nút đọc hướng dẫn tiếng Việt.
+
+Thu âm nghe lại dùng MediaRecorder/getUserMedia trên HTTPS hoặc localhost. Chỉ bắt đầu sau khi người dùng chọn đồng ý và bấm thu âm; giới hạn 60 giây; dừng micro khi rời màn hình. Bản ghi chỉ ở bộ nhớ tab, không tải lên, không đưa vào bản sao lưu và không được lưu khi rời phòng luyện. Thiết bị cần micro và trình duyệt hỗ trợ; nếu không có, vẫn có thể nhập chữ hoặc tự đọc.
+
+Nhận dạng là nút riêng, yêu cầu đồng ý riêng vì trình duyệt có thể xử lý âm thanh qua mạng. Từ trùng được đánh dấu xanh, từ chưa có màu cam theo so khớp văn bản. Không chấm âm vị, trọng âm, độ trôi chảy hoặc điểm phát âm. Hội thoại dùng câu hỏi soạn sẵn, không có AI đánh giá câu trả lời. Không có API trả phí. Giọng tiếng Việt/Anh phụ thuộc giọng cài trên thiết bị.
+
+Chuyển động có thể tắt bằng nút trong studio, tự giảm theo prefers-reduced-motion và dừng trong chế độ tập trung. Lựa chọn bật/tắt lưu cục bộ riêng; dữ liệu học v1 vẫn được giữ. Nhân vật được vẽ bằng CSS, không cần tải ảnh hoặc video ngoài. Mã mới: `studio.js`, `speaking.js`; static hosting cần phục vụ cả hai tệp này (workflow đã cập nhật). Kiểm thử: 11 bài về lịch ôn, dữ liệu, so khớp từ và nội dung; micro/giọng đọc cần kiểm tra trên thiết bị thật.
+
 Web app tiếng Việt dành cho người bắt đầu học tiếng Anh. Không cần tài khoản, cài thư viện hay khóa API. Nội dung mẫu không đại diện cho thông tin cá nhân của người dùng.
 
 ## Chạy ngay trên máy
@@ -43,7 +53,7 @@ Trước khi dùng rộng rãi, kiểm tra thủ công: lượt mới → trả 
 
 ## Đưa mã lên GitHub và xuất bản
 
-Mã nguồn được công bố tại https://github.com/thaidhuy201-hash/english-steps theo lựa chọn công khai của chủ tài khoản. Chưa xác nhận GitHub Pages đã được bật. Không gửi mật khẩu hay token trong chat.
+Mã nguồn công khai: https://github.com/thaidhuy201-hash/english-steps . Không gửi mật khẩu hay token trong chat.
 
 Nếu muốn tự thực hiện:
 
@@ -82,4 +92,5 @@ Có thể dùng static hosting khác: publish trực tiếp `index.html`, `style
 - Hỗ trợ và xử lý giọng nói: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition — khả năng hỗ trợ hạn chế; một số trình duyệt dùng dịch vụ nhận dạng máy chủ.
 
 Nội dung 24 câu là bài luyện tự soạn, không sao chép đề thi và không gắn với tổ chức IELTS.
+
 

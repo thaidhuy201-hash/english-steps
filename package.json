@@ -1,1 +1,1 @@
-{"name":"english-steps","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test tests/*.test.mjs","check":"node --check app.js && node --check learning.js"},"engines":{"node":">=20"}}
+{"name":"english-steps","version":"1.1.0","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test tests/*.test.mjs","check":"node --check app.js && node --check learning.js && node --check studio.js && node --check speaking.js"},"engines":{"node":">=20"}}
