@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {cards} from '../content.js';
+import {initialState,validateState,schedule,makeQueue,dayKey} from '../learning.js';
+test('new learner starts with three foundation cards',()=>assert.deepEqual(makeQueue(cards,initialState(),0).map(c=>c.id),['0-0','0-1','0-2']));
+test('failed cards return after five minutes; successful review expands interval',()=>{const r=schedule(undefined,false,1000);assert.equal(r.due,301000);assert.equal(r.box,0);let good=schedule(r,true,1000);assert.equal(good.due,86401000);good=schedule(good,true,1000);assert.equal(good.due,259201000);assert.equal(good.seen,3);});
+test('due cards precede new material and weak recall reduces new cards',()=>{const s=initialState();s.goal=8;s.records['1-0']={box:0,due:1,seen:1};s.history=Array.from({length:10},()=>({id:'1-0',day:'2026-10-23',correct:false}));assert.deepEqual(makeQueue(cards,s,2).map(c=>c.id),['1-0','0-0']);});
+test('future reviews are excluded; no fresh cards yields empty session',()=>{const s=initialState();for(const c of cards)s.records[c.id]={box:1,due:5000,seen:1};assert.equal(makeQueue(cards,s,4000).length,0);});
+test('backup validation rejects corrupt data and strips unknown fields',()=>{const s=initialState(),ids=cards.map(c=>c.id);assert.deepEqual(validateState({...s,extra:'ignore'},ids),s);assert.throws(()=>validateState({...s,records:{x:{box:1,due:1,seen:1}}},ids));assert.throws(()=>validateState({...s,checks:[99]},ids));assert.throws(()=>validateState({...s,history:[{day:'x'}]},ids));assert.throws(()=>validateState({...s,goal:100},ids));assert.throws(()=>validateState({...s,records:{'0-0':{box:1,due:Infinity,seen:1}}},ids));});
+test('local day is stable and content has unique paired cards',()=>{assert.equal(dayKey(new Date(2026,9,23,0,1)),'2026-10-23');assert.equal(new Set(cards.map(c=>c.id)).size,24);assert.ok(cards.every(c=>c.en&&c.vi));});
